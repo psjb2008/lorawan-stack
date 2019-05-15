@@ -33,6 +33,7 @@ import createNamedRightsReducer from './rights'
 import createNamedCollaboratorsReducer from './collaborators'
 import createNamedEventsReducer from './events'
 import fetching from './ui/fetching'
+import error from './ui/error'
 
 export default combineReducers({
   user,
@@ -63,5 +64,6 @@ export default combineReducers({
   }),
   ui: combineReducers({
     fetching,
+    error,
   }),
 })
