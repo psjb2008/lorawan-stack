@@ -49,7 +49,8 @@ import {
 
 export const SHARED_NAME = 'APPLICATION'
 
-export const GET_APP = 'GET_APPLICATION'
+export const GET_APP_BASE = 'GET_APPLICATION'
+export const GET_APP = 'GET_APPLICATION_REQUEST'
 export const GET_APP_SUCCESS = 'GET_APPLICATION_SUCCESS'
 export const GET_APP_FAILURE = 'GET_APPLICATION_FAILURE'
 export const GET_APP_API_KEYS_LIST = createGetApiKeysListActionType(SHARED_NAME)
