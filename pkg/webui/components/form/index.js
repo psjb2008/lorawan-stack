@@ -128,9 +128,11 @@ class InnerForm extends React.Component {
           })
         } else if (Child.type === Button) {
           if (Child.props.type === 'submit') {
+            const buttonDisabled = Child.props.disabled
+            const formButtonDisabled = isSubmitting || !submitEnabledWhenInvalid && !isValid
             return React.cloneElement(Child, {
               ...Child.props,
-              disabled: isSubmitting || !submitEnabledWhenInvalid && !isValid,
+              disabled: formButtonDisabled || buttonDisabled,
               busy: isSubmitting,
             })
           } else if (Child.props.type === 'reset') {
