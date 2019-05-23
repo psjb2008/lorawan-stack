@@ -17,11 +17,78 @@ import {
   GET_APP_SUCCESS,
   GET_APP_FAILURE,
 } from '../actions/application'
+import {
+  GET_APP_LINK,
+  GET_APP_LINK_SUCCESS,
+  GET_APP_LINK_FAILURE,
+  UPDATE_APP_LINK_SUCCESS,
+  DELETE_APP_LINK_SUCCESS,
+} from '../actions/link'
+
+const linkDefaultState = {
+  fetching: false,
+  linked: false,
+  error: undefined,
+  link: undefined,
+  stats: undefined,
+}
+
+const link = function (state = linkDefaultState, action) {
+  switch (action.type) {
+  case GET_APP_LINK:
+    return {
+      ...state,
+      fetching: true,
+    }
+  case GET_APP_LINK_SUCCESS:
+    return {
+      ...state,
+      fetching: false,
+      error: undefined,
+      linked: action.linked,
+      link: action.link || {},
+      stats: action.stats,
+    }
+  case UPDATE_APP_LINK_SUCCESS:
+    const { link, stats } = action
+    return {
+      ...state,
+      linked: true,
+      fetching: false,
+      error: undefined,
+      link: {
+        ...state.link,
+        ...link,
+      },
+      stats: {
+        ...state.stats,
+        ...stats,
+      },
+    }
+  case DELETE_APP_LINK_SUCCESS:
+    return {
+      ...state,
+      fetching: false,
+      error: undefined,
+      link: {},
+      stats: undefined,
+    }
+  case GET_APP_LINK_FAILURE:
+    return {
+      ...state,
+      fetching: false,
+      error: action.error,
+    }
+  default:
+    return state
+  }
+}
 
 const defaultState = {
   fetching: false,
   error: undefined,
   application: undefined,
+  link: {},
 }
 
 const application = function (state = defaultState, action) {
@@ -44,6 +111,15 @@ const application = function (state = defaultState, action) {
       ...state,
       fetching: false,
       error: action.error,
+    }
+  case GET_APP_LINK:
+  case GET_APP_LINK_SUCCESS:
+  case GET_APP_LINK_FAILURE:
+  case UPDATE_APP_LINK_SUCCESS:
+  case DELETE_APP_LINK_SUCCESS:
+    return {
+      ...state,
+      link: link(state.link, action),
     }
   default:
     return state

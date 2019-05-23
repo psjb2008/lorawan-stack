@@ -52,3 +52,31 @@ export const applicationKeySelector = apiKeySelector(ENTITY)
 export const applicationKeysErrorSelector = apiKeysErrorSelector(ENTITY)
 
 export const applicationKeysFetchingSelector = apiKeysFetchingSelector(ENTITY)
+
+const selectLinkStore = state => state.application.link
+
+export const selectApplicationLink = state => selectLinkStore(state).link
+
+export const selectApplicationLinkStats = state => selectLinkStore(state).stats
+
+export const selectApplicationLinkFetching = state => selectLinkStore(state).fetching || false
+
+export const selectApplicationLinkError = state => selectLinkStore(state).error
+
+export const selectApplicationLinkFormatters = function (state) {
+  const link = selectApplicationLink(state) || {}
+
+  return link.default_formatters
+}
+
+export const selectApplicationIsLinked = function (state) {
+  const linkStore = selectLinkStore(state)
+  const link = selectApplicationLink(state) || {}
+  const error = selectApplicationLinkError(state)
+
+  const hasBase = Boolean(link.api_key)
+  const hasError = Boolean(error)
+  const isLinked = linkStore.linked
+
+  return hasBase && !hasError && isLinked
+}
