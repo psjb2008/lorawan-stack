@@ -2578,6 +2578,7 @@ OrganizationOrUserIdentifiers contains either organization or user identifiers.
 | ----- | ---- | ----- | ----------- |
 | `session_key_id` | [`bytes`](#bytes) |  | Join Server issued identifier for the session keys. |
 | `dev_eui` | [`bytes`](#bytes) |  | LoRaWAN DevEUI. |
+| `join_eui` | [`bytes`](#bytes) |  | LoRaWAN JoinEUI (or AppEUI for LoRaWAN 1.0 end devices). |
 
 #### Field Rules
 

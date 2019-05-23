@@ -10050,6 +10050,16 @@
               "fullType": "bytes",
               "ismap": false,
               "defaultValue": ""
+            },
+            {
+              "name": "join_eui",
+              "description": "LoRaWAN JoinEUI (or AppEUI for LoRaWAN 1.0 end devices).",
+              "label": "",
+              "type": "bytes",
+              "longType": "bytes",
+              "fullType": "bytes",
+              "ismap": false,
+              "defaultValue": ""
             }
           ]
         }
